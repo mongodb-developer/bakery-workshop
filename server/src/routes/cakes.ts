@@ -20,11 +20,8 @@ cakeRouter.get("/comments/:id", async (req, res) => {
         const comments = await collections?.comments?.find(
             {
                 cakeId: new ObjectId(cakeId)
-            }, {
-            sort: {
-                _id: 'descending'
             }
-        }).toArray();
+        ).toArray();
 
         if (comments) {
             res.status(200).send(comments);
