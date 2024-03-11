@@ -1,0 +1,30 @@
+<div *ngIf="cake$ | async as cake" class="container">
+    <div class="cake">
+        <div class="cake-details">
+            <img class="cake-image" [src]="cake.image" onerror="this.src='/assets/no-cake.jpeg'" />
+            <div>
+                <h2 class="cake-name">{{ cake.name }}</h2>
+                <p class="description">{{ cake.description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-comment">
+        <h4>Add a comment</h4>
+        <app-comment-form (formSubmitted)="addComment($event)"></app-comment-form>
+    </div>
+
+    <div class="comments">
+        <h4>Comments</h4>
+        <hr>
+
+        <div *ngFor="let comment of comments$ | async" class="comment">
+            <span>Author: {{ comment.name }}</span>
+            <span>Date: {{ comment.date | date }}</span>
+            <p>{{ comment.text }}</p>
+            <span class="sentiment" *ngIf="comment.sentiment">Sentiment score: {{ comment.sentiment.documentSentiment?.score }}.</span>
+            <hr>
+        </div>
+    </div>
+
+</div>
