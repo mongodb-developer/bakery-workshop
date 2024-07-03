@@ -7,7 +7,7 @@ export const collections: {
 } = {};
 
 export async function connectToDatabase(uri: string) {
-    const client = new MongoClient(uri, { appName: 'devrel.googlecloud.getting-started-lab' });
+    const client = new mongodb.MongoClient(uri, { appName: 'devrel.googlecloud.getting-started-lab' });
     await client.connect();
 
     const db = client.db("Bakery");
